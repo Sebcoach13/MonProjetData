@@ -1,9 +1,9 @@
 SELECT 'DEBUT DE L’ANALYSE' AS Message;
---1 preparation de la base de données
+-- 1 preparation de la base de données
 CREATE DATABASE IF NOT EXISTS analyse_performance;
 USE analyse_performance;
 
---2 creation des tables
+-- 2 creation des tables
 CREATE TABLE  categories (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom_categorie VARCHAR(50)
@@ -25,7 +25,7 @@ CREATE TABLE ventes (
     FOREIGN KEY (produit_id) REFERENCES produits(id)
 );
 
---3 insertion de données
+-- 3 insertion de données
 INSERT INTO categories (nom_categorie) VALUES ('Électronique'), ('fournitures');
 INSERT INTO produits (nom_produit, prix, categorie_id) VALUES 
 ('Ordinateur ', 800.00, 1),
@@ -37,7 +37,7 @@ INSERT INTO ventes (produit_id, quantite, date_vente) VALUES
 (2, 5, '2024-01-16'),
 (3, 50, '2024-01-17');
 
---4 requetes d'analyse
+-- 4 requetes d'analyse
 SELECT
     c.nom_categorie,
     SUM(p.prix * v.quantite) AS chiffre_affaires_total

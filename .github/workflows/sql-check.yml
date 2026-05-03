@@ -1,0 +1,18 @@
+name: SQL Test
+on: [push]
+jobs:
+  check-sql:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - 3306:3306
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Project 1
+        run: mysql -h 127.0.0.1 -u root < 01_gestion_ventes.sql
+      - name: Run Project 2
+        run: mysql -h 127.0.0.1 -u root < 02_analyse_produits.sql

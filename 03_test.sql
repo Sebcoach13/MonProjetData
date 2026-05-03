@@ -1,0 +1,1 @@
+SELECT "Tout fonctionne !" AS Status;

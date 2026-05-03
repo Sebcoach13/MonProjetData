@@ -18,7 +18,9 @@ jobs:
           --health-retries=3
     steps:
       - uses: actions/checkout@v3
-      - name: Run Project 1
-        run: mysql -h 127.0.0.1 -u root < 01_gestion_ventes.sql
-      - name: Run Project 2
-        run: mysql -h 127.0.0.1 -u root < 02_analyse_produits.sql
+      - name: Run all SQL files
+        run: |
+          for file in *.sql; do
+            echo "Running $file..."
+            mysql -h 127.0.0.1 -u root < "$file"
+          done

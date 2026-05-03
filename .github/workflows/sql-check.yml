@@ -10,6 +10,12 @@ jobs:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         ports:
           - 3306:3306
+        # Cette partie force GitHub à attendre que MySQL réponde
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
     steps:
       - uses: actions/checkout@v3
       - name: Run Project 1
